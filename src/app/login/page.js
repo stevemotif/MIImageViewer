@@ -17,7 +17,7 @@ export default function page() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-       const response = await fetch("http://localhost:3006/login",{
+       const response = await fetch("https://miscanimageapi.vercel.app/login",{
             method : "POST",
             headers : {'Content-Type' : 'application/json'},
             body : JSON.stringify({email, password})

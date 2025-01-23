@@ -19,7 +19,7 @@ const page = () => {
             return;
         }
 
-        const response = await fetch("http://localhost:3006/signup",{
+        const response = await fetch("https://miscanimageapi.vercel.app/signup",{
             method : "POST",
             headers : {'content-Type' : 'application/json'},
             body : JSON.stringify({firstname, lastname, email, password,dob})

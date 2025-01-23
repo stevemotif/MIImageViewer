@@ -17,7 +17,7 @@ const [scanlist, Setscanlist] = useState([]);
 
 
 const fetchPatientImages = async (email) => {
-  const response =  await fetch(`http://localhost:3006/getpatientimages?email=${encodeURIComponent(email)}`, {
+  const response =  await fetch(`https://miscanimageapi.vercel.app/getpatientimages?email=${encodeURIComponent(email)}`, {
         method: "GET",
         headers: {'Content-Type' : 'application/json'}
     })
