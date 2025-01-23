@@ -4,7 +4,7 @@ import Navbar from '../../navbar/page'
 import Link from 'next/link';
 
 async function getScanDetails(id) {
-  const res = await fetch(`http://localhost:3006/getpatientimages/${id}`); // Replace with your API endpoint
+  const res = await fetch(`https://miscanimageapi.vercel.app/getpatientimages/${id}`); // Replace with your API endpoint
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
