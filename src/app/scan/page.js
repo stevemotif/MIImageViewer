@@ -1,14 +1,16 @@
 "use client"
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation';
 import Image from 'next/image'
 import Navbar from '../navbar/page'
 import { useAuth } from '../AuthProvider'
 import Link from 'next/link'
+import Cookies from 'js-cookie';
 
 const page = () => {
 
     const { user } = useAuth();
-
+    const router = useRouter();
    
 
 console.log("Logged in user : ", user?.email, user?.name);
@@ -17,6 +19,8 @@ const [scanlist, Setscanlist] = useState([]);
 
 
 const fetchPatientImages = async (email) => {
+
+
   const response =  await fetch(`https://miscanimageapi.vercel.app/getpatientimages?email=${encodeURIComponent(email)}`, {
         method: "GET",
         headers: {'Content-Type' : 'application/json'}
@@ -31,6 +35,12 @@ const fetchPatientImages = async (email) => {
 
 
 useEffect (() => {
+  const token = Cookies.get('authToken');
+  console.log("Logged in Token in Scan Page : ", token)
+  if (!token) {
+    router.push('/login');
+  }
+
     const email = user.email;
     fetchPatientImages(email);
 },[])

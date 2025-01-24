@@ -1,7 +1,22 @@
+"use client"
+import React, { useEffect, useState } from 'react'
 import Image from "next/image";
 import Navbar from "../app/navbar/page";
+import Cookies from 'js-cookie';
 
 export default function Home() {
+
+  useEffect (() => {
+    const token = Cookies.get('authToken');
+    console.log("Logged in Token in Home Page : ", token)
+    if (!token) {
+      router.push('/login');
+    }
+
+  },[])
+
+
+
   return (
     <div className="flex min-h-screen bg-gray-100">
     {/* Sidebar */}
