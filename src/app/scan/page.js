@@ -13,7 +13,7 @@ const page = () => {
     const router = useRouter();
    
 
-console.log("Logged in user : ", user?.email, user?.name);
+console.log("Logged in user : ", user?.email, user?.name, user?.role);
 
 const [scanlist, Setscanlist] = useState([]);
 

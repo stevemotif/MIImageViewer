@@ -13,11 +13,19 @@ export default function page() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const { login } = useAuth();
+    const [loading, setLoading] = useState(false);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
 
-       const response = await fetch("https://miscanimageapi.vercel.app/login",{
+      try{
+        e.preventDefault();
+        setLoading(true);
+       const response = await fetch("http://localhost:3006/login",{
             method : "POST",
             headers : {'Content-Type' : 'application/json'},
             body : JSON.stringify({email, password})
@@ -33,10 +41,16 @@ export default function page() {
 
     const data = await response.json();
     console.log('Login data:', data);
-
+    setLoading(false);
     // Update auth context
     login(data);
         window.location.href = '/scan';
+      }catch{
+
+      }finally {
+       
+      }
+        
     };
 
   return (
