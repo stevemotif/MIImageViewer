@@ -7,7 +7,7 @@ export function middleware(req) {
   const token = req.cookies.get('authToken');
   if (!token) {
     console.log('No token found. Redirecting to /login');
-    return NextResponse.redirect(new URL('/login', req.url));
+    return NextResponse.redirect(new URL('/account/login', req.url));
   }
 
   console.log('Token found. Proceeding to the next handler.');
@@ -16,5 +16,5 @@ export function middleware(req) {
 
 
 export const config = {
-  matcher: ['/scan/:path*', '/'],
+  matcher: ['/account/scan/:path*', '/account/scan'],
 };

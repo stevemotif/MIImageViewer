@@ -5,7 +5,10 @@ import Image from "next/image";
 import Navbar from "../../navbar/page";
 import Link from "next/link";
 
+
+
 async function fetchScanDetails(id) {
+
   const res = await fetch(`https://miscanimageapi.vercel.app/getpatientimages/${id}`);
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -14,12 +17,15 @@ async function fetchScanDetails(id) {
 }
 
 export default function ScanDetailsPage({ params: paramsPromise }) {
+
   const params = use(paramsPromise); // Unwrap the `params` promise
   const { id } = params; // Access dynamic route parameter
   const [scanDetails, setScanDetails] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
     async function fetchData() {
       try {
         const data = await fetchScanDetails(id);
@@ -74,7 +80,7 @@ export default function ScanDetailsPage({ params: paramsPromise }) {
       <main className="flex-1 p-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <Link href="/scan">Back to Scan</Link>
+          <Link href="../../account/scan">Back to Scan</Link>
           <h1 className="text-2xl font-semibold text-gray-800">{scanDetails.scantype}</h1>
         </div>
 

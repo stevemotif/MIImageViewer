@@ -2,26 +2,38 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
-import { useAuth } from '../AuthProvider';
+import { useAuth } from '../../AuthProvider';
 import Cookies from 'js-cookie';
+
 
 const page = () => {
 
-    const router = useRouter();
-    const [isHydrated, setIsHydrated] = useState(false);
+  
+       const { user } = useAuth();
+       const router = useRouter();
+       const [isHydrated, setIsHydrated] = useState(false);
+      const [disabladminemenu, setDisabladminemenu] = useState(false); 
+      
+      console.log("Logged in user Navbar : ", user?.email, user?.name, user?.role);
+
+
     const handleLogout = () => {
             Cookies.remove('authToken');
                     Cookies.remove('userEmail');
                     Cookies.remove('firstName');
-        router.push('/login');
+        router.push('../account/login');
     }
 
-    const { user } = useAuth();
-
+ 
     useEffect(() => {
       // Mark the component as hydrated after mounting
       setIsHydrated(true);
-    }, []);
+      if(user?.role === "Admin")
+      {
+        setDisabladminemenu(true);
+        console.log("Menu status : ", disabladminemenu);
+      }
+    }, [disabladminemenu]);
 
     if (!isHydrated) {
       // Return null to avoid rendering during SSR
@@ -37,17 +49,27 @@ const page = () => {
     <nav className="mt-6">
     <ul>
       <li className="px-6 py-2 text-gray-700 hover:bg-gray-200">
-        <Link href="/" className="flex items-center space-x-2">
+        <Link href="/account" className="flex items-center space-x-2">
           <span>🏠</span>
           <span>Home</span>
         </Link>
       </li>
       <li className="px-6 py-2 text-gray-700 hover:bg-gray-200">
-        <Link href="../scan/" className="flex items-center space-x-2">
+        <Link href="../../account/scan" className="flex items-center space-x-2">
           <span>🎫</span>
           <span>Scan</span>
         </Link>
       </li>
+{disabladminemenu? 
+<li className="px-6 py-2 text-gray-700 hover:bg-gray-200">
+<Link href="../../account/patients" className="flex items-center space-x-2">
+<button className="lex items-center space-x-2">
+  <span>🎫</span>
+  <span>New Paitent List</span>
+  </button>
+  </Link>
+</li> : <></>
+}
       <li className="px-6 py-2 text-gray-700 hover:bg-gray-200">
 
         <button className="lex items-center space-x-2" onClick={handleLogout}>

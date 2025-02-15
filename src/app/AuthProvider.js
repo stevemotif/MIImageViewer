@@ -46,7 +46,7 @@ export function AuthProvider({children}) {
         Cookies.remove('role');
         setUser(null);
         console.log('User logged out.');
-        router.push('/login'); // Redirect explicitly
+        router.push('/account/login'); // Redirect explicitly
     }
 
     return(

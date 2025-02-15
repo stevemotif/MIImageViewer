@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 
 const page = () => {
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
     const [firstname, setFirstname] =  useState('');
     const [lastname, setLastname] =  useState('');
     const [email, setEmail] =  useState('');
@@ -19,7 +20,7 @@ const page = () => {
             return;
         }
 
-        const response = await fetch("https://miscanimageapi.vercel.app/signup",{
+        const response = await fetch(`${API_URL}/signup`,{
             method : "POST",
             headers : {'content-Type' : 'application/json'},
             body : JSON.stringify({firstname, lastname, email, password,dob})
@@ -168,7 +169,7 @@ const page = () => {
         {/* Already have an account */}
         <p className="text-sm text-center text-gray-600 mt-6">
           Already have an account?{' '}
-          <a href="/login" className="text-blue-500 hover:underline">
+          <a href="/account/login" className="text-blue-500 hover:underline">
             Sign in
           </a>
         </p>

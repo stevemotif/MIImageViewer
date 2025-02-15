@@ -2,12 +2,13 @@
 import { useState } from "react";
 import React from 'react'
 import Cookies from 'js-cookie';
-import { useAuth } from '../AuthProvider';
+import { useAuth } from '../../AuthProvider';
 import { toast } from 'react-hot-toast';
 
 
 export default function page() {
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -25,7 +26,7 @@ export default function page() {
       try{
         e.preventDefault();
         setLoading(true);
-       const response = await fetch("http://localhost:3006/login",{
+       const response = await fetch(`${API_URL}/login`,{
             method : "POST",
             headers : {'Content-Type' : 'application/json'},
             body : JSON.stringify({email, password})
@@ -44,7 +45,7 @@ export default function page() {
     setLoading(false);
     // Update auth context
     login(data);
-        window.location.href = '/scan';
+        window.location.href = '/account/scan';
       }catch{
 
       }finally {
@@ -124,7 +125,7 @@ export default function page() {
           Remember me
         </label>
       </div>
-      <a href="/forgotpassword" className="text-sm text-blue-500 hover:underline">
+      <a href="/account/forgotpassword" className="text-sm text-blue-500 hover:underline">
         Forgot password?
       </a>
     </div>
@@ -137,7 +138,7 @@ export default function page() {
   </form>
   <p className="text-sm text-center text-gray-600 mt-6">
     Don’t have an account?{' '}
-    <a href="/signup" className="text-blue-500 hover:underline">
+    <a href="/account/signup" className="text-blue-500 hover:underline">
       Sign up
     </a>
   </p>

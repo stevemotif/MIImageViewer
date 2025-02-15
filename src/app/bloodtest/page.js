@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function page() {
   return (
-    <div>Scan</div>
+    <div>Blood test home page</div>
   )
 }
