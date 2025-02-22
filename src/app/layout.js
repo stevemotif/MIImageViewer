@@ -1,11 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from 'next/link';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -24,28 +22,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* <ul className="navbar-nav ml-auto close-mobile-menu-hello">
        
-      
-            <li className="nav__item close-mobile-menu-hello">
-              <Link href=""
-                className="nav__item-link close-mobile-menu-hello"
-              >
-              
-              </Link>
-            </li>
-
-        <li className="nav__item close-mobile-menu-hello">
-          
-          <a
-            style={{ marginTop: "20px" }}
-            href="https://miracleinside3d4dbabyscancentre.gettimely.com/Booking/Location/89781?mobile=True"
-            className="btn btn__primary btn__rounded ml-30"
-          >
-            <span>Book Now</span>
-          </a>
-        </li>
-      </ul> */}
 
         {children}
       </body>
