@@ -23,6 +23,8 @@ export default function page() {
 
     const handleSubmit = async (e) => {
 
+console.log("API url : ", API_URL);
+
       try{
         e.preventDefault();
         setLoading(true);
@@ -31,6 +33,8 @@ export default function page() {
             headers : {'Content-Type' : 'application/json'},
             body : JSON.stringify({email, password})
        })
+
+       console.log("response url : ", response);
 
        if (!response.ok) {
         const errorData = await response.json();
@@ -46,8 +50,8 @@ export default function page() {
     // Update auth context
     login(data);
         window.location.href = '/account/scan';
-      }catch{
-
+      }catch (err) {
+        console.log("err from catch : ", err);
       }finally {
        
       }
