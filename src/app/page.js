@@ -63,7 +63,8 @@ export default async function Home() {
  
 
 <>
-   <Link href={"/"}>Home</Link>
+MI Image Viewer
+   {/* <Link href={"/"}>Home</Link>
    <Link href={"/about"}>About</Link>
   <Link href={"/scan"}>scan</Link>
   <Link href={"/bloodtest"}>Blood Test</Link>
@@ -79,7 +80,7 @@ export default async function Home() {
         <Testimonials />
         <Modalwindow/>
         <Blog />
-        <Footer />
+        <Footer /> */}
   </>
   );
 }
