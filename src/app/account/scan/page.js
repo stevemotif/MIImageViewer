@@ -23,6 +23,8 @@ const [scanlist, Setscanlist] = useState([]);
 
 const fetchPatientImages = async (email,role) => {
 
+  console.log("role at scan page : ", role);
+
 if(role === 'Admin')
 {
   console.log("Trying to get for Admin");
@@ -37,7 +39,7 @@ if(role === 'Admin')
   })
   .catch(error => console.error("API error:", error));
 }else{
-  const response =  await fetch(`http://localhost:3006/getpatientimages?email=${encodeURIComponent(email)}`, {
+  const response =  await fetch(`${API_URL}/getpatientimages?email=${encodeURIComponent(email)}`, {
     method: "GET",
     headers: {'Content-Type' : 'application/json'}
 })

@@ -21,7 +21,7 @@ const page = () => {
             Cookies.remove('authToken');
                     Cookies.remove('userEmail');
                     Cookies.remove('firstName');
-        router.push('../account/login');
+        router.push('../../account/login');
     }
 
  

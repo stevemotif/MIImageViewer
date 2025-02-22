@@ -25,7 +25,7 @@ const page = () => {
     const handleinviteEmail = async (email,fname,lname) => {
       console.log("clicked handleinviteEmail", email);
     
-      email = "stevemotif@gmail.com";
+      //email = "stevemotif@gmail.com";
       const response =  await fetch(`${API_URL}/sendwelcomeemail`, {
         method: "POST",
         headers: {'Content-Type' : 'application/json'},

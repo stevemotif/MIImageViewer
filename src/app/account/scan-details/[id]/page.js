@@ -9,7 +9,9 @@ import Link from "next/link";
 
 async function fetchScanDetails(id) {
 
-  const res = await fetch(`https://miscanimageapi.vercel.app/getpatientimages/${id}`);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+  const res = await fetch(`${API_URL}/getpatientimages/${id}`);
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
@@ -24,7 +26,6 @@ export default function ScanDetailsPage({ params: paramsPromise }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     async function fetchData() {
       try {
