@@ -45,7 +45,7 @@ const page = () => {
     if(role === 'Admin')
     {
       console.log("Trying to get for users list for Admin");
-      const response =  await fetch(`http://localhost:3006/getallpatientslist`, {
+      const response =  await fetch(`${API_URL}/getallpatientslist`, {
         method: "GET",
         headers: {'Content-Type' : 'application/json'}
     })
