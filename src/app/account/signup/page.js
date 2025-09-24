@@ -1,6 +1,8 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
+import { useSearchParams, useRouter } from 'next/navigation';
+
 
 const page = () => {
 
@@ -11,6 +13,15 @@ const page = () => {
     const [password, setPassword] =  useState('');
     const [conpassword, setPasswordcon] =  useState('');
     const [dob, setDob] =  useState('');
+
+    const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const scan = searchParams.get('scan');
+  const date = searchParams.get('date');
+  const time = searchParams.get('time');
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -39,6 +50,7 @@ const page = () => {
         console.log('Signup response:', data);
 
         toast.success(data.message);
+        router.push(`/account/checkout?scan=${scan}&date=${date}&time=${time}`);
 
         setTimeout(function () {
             window.location.href = "/login"; //will redirect to your blog page (an ex: blog.html)
@@ -46,6 +58,14 @@ const page = () => {
 
          
      //   window.location.href = '/login';
+    }
+
+
+    const handlelogin = async (e) => {
+
+      console.log("clicked login ")
+//href="/account/login"
+ router.push(`/account/login?scan=${scan}&date=${date}&time=${time}`);
     }
 
   return (
@@ -169,7 +189,7 @@ const page = () => {
         {/* Already have an account */}
         <p className="text-sm text-center text-gray-600 mt-6">
           Already have an account?{' '}
-          <a href="/account/login" className="text-blue-500 hover:underline">
+          <a onClick={handlelogin}  className="text-blue-500 hover:underline">
             Sign in
           </a>
         </p>

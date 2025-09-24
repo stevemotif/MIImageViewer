@@ -61,14 +61,35 @@ const page = () => {
         </Link>
       </li>
 {disabladminemenu? 
+<>
 <li className="px-6 py-2 text-gray-700 hover:bg-gray-200">
 <Link href="../../account/patients" className="flex items-center space-x-2">
 <button className="lex items-center space-x-2">
   <span>🎫</span>
-  <span>New Paitent List</span>
+  <span>New Patients</span>
   </button>
   </Link>
-</li> : <></>
+</li> 
+<li className="px-6 py-2 text-gray-700 hover:bg-gray-200">
+<Link href="../../account/services" className="flex items-center space-x-2">
+<button className="lex items-center space-x-2">
+  <span>🎫</span>
+  <span>Products</span>
+  </button>
+  </Link>
+</li> 
+<li className="px-6 py-2 text-gray-700 hover:bg-gray-200">
+<Link href="../../account/bookingcalendar" className="flex items-center space-x-2">
+<button className="lex items-center space-x-2">
+  <span>🎫</span>
+  <span>Calendar</span>
+  </button>
+  </Link>
+</li> 
+</>
+
+
+: <></>
 }
       <li className="px-6 py-2 text-gray-700 hover:bg-gray-200">
 

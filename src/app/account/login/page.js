@@ -4,6 +4,7 @@ import React from 'react'
 import Cookies from 'js-cookie';
 import { useAuth } from '../../AuthProvider';
 import { toast } from 'react-hot-toast';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 
 export default function page() {
@@ -16,14 +17,21 @@ export default function page() {
     const { login } = useAuth();
     const [loading, setLoading] = useState(false);
 
+
+        const searchParams = useSearchParams();
+      const router = useRouter();
+    
+      const scan = searchParams.get('scan');
+      const date = searchParams.get('date');
+      const time = searchParams.get('time');
+    
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
 
     const handleSubmit = async (e) => {
-
-console.log("API url : ", API_URL);
 
       try{
         e.preventDefault();
@@ -49,7 +57,14 @@ console.log("API url : ", API_URL);
     setLoading(false);
     // Update auth context
     login(data);
+
+    if(scan === null && date === null && time === null){
         window.location.href = '/account/scan';
+    }
+      else{
+                router.push(`/account/checkout?scan=${scan}&date=${date}&time=${time}&email=${email}`);
+      }
+       
       }catch (err) {
         console.log("err from catch : ", err);
       }finally {
@@ -57,6 +72,12 @@ console.log("API url : ", API_URL);
       }
         
     };
+
+const handlesignup = () => {
+  // href="/account/signup"
+
+   router.push(`/account/signup?scan=${scan}&date=${date}&time=${time}`);
+}
 
   return (
 //     <div>
@@ -142,7 +163,7 @@ console.log("API url : ", API_URL);
   </form>
   <p className="text-sm text-center text-gray-600 mt-6">
     Don’t have an account?{' '}
-    <a href="/account/signup" className="text-blue-500 hover:underline">
+    <a onClick={handlesignup} className="text-blue-500 hover:underline">
       Sign up
     </a>
   </p>
