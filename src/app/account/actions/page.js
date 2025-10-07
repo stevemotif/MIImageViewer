@@ -3,7 +3,7 @@
 //stripe.js
 import { headers } from 'next/headers'
 
-import { stripe } from '../../lib/stripe'
+//import { stripe } from '../../lib/stripe'
 
 export async function fetchClientSecret() {
   const origin = (await headers()).get('origin')
