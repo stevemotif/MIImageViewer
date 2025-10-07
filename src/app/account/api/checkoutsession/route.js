@@ -1,7 +1,7 @@
 // This is a Server Component API Route
 
 import { NextResponse } from 'next/server'
-import Stripe from 'stripe'
+//import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.NEXT_PUBLIC_SECRET_KEY) // Use .env.local instead of hardcoding
 
